@@ -203,6 +203,7 @@ config = {
         # ["src.tasks.MyOneTimeWithAGroup2", "MyOneTimeWithAGroup2"],
         # ["src.tasks.MyOneTimeWithBGroup", "MyOneTimeWithBGroup"],
         ["src.tasks.RhythmTask", "RhythmTask"],  # 新增
+        ["src.tasks.PinkPawHeistTask", "PinkPawHeistTask"],
         ["ok", "DiagnosisTask"],
         # ["src.tasks.custom.TeamScannerTask", "TeamScannerTask"],
         # ["src.tasks.DebugCharTask", "DebugCharTask"],
