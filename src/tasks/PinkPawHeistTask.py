@@ -303,9 +303,17 @@ class PinkPawHeistTask(NTEOneTimeTask, BaseNTETask):
         self.send_key(key)
 
     def _key_down(self, key: str):
+        interaction = getattr(self.executor, "interaction", None)
+        if interaction is not None and hasattr(interaction, "key_down"):
+            interaction.key_down(key)
+            return
         self.send_key_down(key)
 
     def _key_up(self, key: str):
+        interaction = getattr(self.executor, "interaction", None)
+        if interaction is not None and hasattr(interaction, "key_up"):
+            interaction.key_up(key)
+            return
         self.send_key_up(key)
 
     def _hold(self, key: str, seconds: float):
