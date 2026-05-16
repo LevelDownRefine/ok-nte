@@ -2,14 +2,14 @@ import time
 
 import cv2
 import numpy as np
-from ok import PostMessageInteraction, TaskDisabledException
-from ok.device.intercation import PynputInteraction
+from ok import TaskDisabledException
 from qfluentwidgets import FluentIcon
 
 from src.tasks.BaseNTETask import BaseNTETask
+from src.tasks.NTEOneTimeTask import NTEOneTimeTask
 
 
-class PinkPawHeistTask(BaseNTETask):
+class PinkPawHeistTask(NTEOneTimeTask, BaseNTETask):
     CONF_LOOP_COUNT = "循环次数"
     CONF_SCHEME = "地图方案"
 
@@ -47,18 +47,11 @@ class PinkPawHeistTask(BaseNTETask):
         self.add_exit_after_config()
 
     def run(self):
-        self._prepare_onetime_interaction()
+        super().run()
         try:
             self.do_run()
         except TaskDisabledException:
             pass
-
-    def _prepare_onetime_interaction(self):
-        if isinstance(self.executor.interaction, PostMessageInteraction):
-            self.executor.interaction.activate()
-        elif isinstance(self.executor.interaction, PynputInteraction):
-            self.bring_to_front()
-        self.sleep(0.5)
 
     def do_run(self):
         loop_count = self._get_loop_count()
