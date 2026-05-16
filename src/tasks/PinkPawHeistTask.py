@@ -1,4 +1,3 @@
-import re
 import time
 
 import cv2
@@ -365,7 +364,7 @@ class PinkPawHeistTask(BaseNTETask):
     def _attack_cycle(self, times=3, loot=False):
         for _ in range(times):
             self._tap_key("space")
-            self.click(0.5, 0.5, key="left")
+            self.click(x=0.5, y=0.5)
             self.sleep(0.25)
         if loot:
             self._tap_key("f")
@@ -415,7 +414,7 @@ class PinkPawHeistTask(BaseNTETask):
 
     def _find_text(self, expected: str, roi_720: tuple[int, int, int, int]):
         roi_box = self._roi_box(*roi_720)
-        words = self.ocr(box=roi_box, match=re.compile(re.escape(expected)))
+        words = self.ocr(box=roi_box, match=expected)
         if words:
             return words[0]
         return None
