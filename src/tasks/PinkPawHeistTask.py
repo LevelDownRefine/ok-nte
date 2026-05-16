@@ -91,11 +91,11 @@ class PinkPawHeistTask(NTEOneTimeTask, BaseNTETask):
 
         self._key_down("w")
         self.sleep(4.5)
-        self._key_up("w")
         self._key_down("d")
         self.sleep(3.4)
         self._key_up("d")
         self.sleep(2)
+        self._key_up("w")
         self._tap_key("f")
         self.sleep(4)
 
